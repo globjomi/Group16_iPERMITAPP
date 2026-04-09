@@ -8,22 +8,60 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
         <div class="container">
-            @Html.ActionLink("iPermit", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+            <!-- iPermit Logo: Redirect based on login -->
+            @Html.ActionLink("iPermit", "HomeRedirect", "Account", null, new { @class = "navbar-brand" })
+
+
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+
+                    @* ===== Not logged in ===== *@
+                    @if (Session["UserType"] == null)
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+
+                    @* ===== RE User ===== *@
+                    else if (Session["UserType"].ToString() == "RE")
+                    {
+                        <li>@Html.ActionLink("Dashboard", "Index", "REDashboard", null, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Apply Permit", "Create", "Permit", null, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("My Applications", "Index", "Permit", null, new { @class = "nav-link" })</li>
+                    }
+
+                    @* ===== EO User ===== *@
+                    else if (Session["UserType"].ToString() == "EO")
+                    {
+                        <li>@Html.ActionLink("Dashboard", "Index", "EODashboard", null, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("All Requests", "Index", "EODashboard", null, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Reports", "Reports", "EODashboard", null, new { @class = "nav-link" })</li>
+                    }
+
                 </ul>
+
+                @* Logout button if logged in *@
+                @if (Session["UserType"] != null)
+                {
+                    <ul class="navbar-nav">
+                        <li>@Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "nav-link" })</li>
+                    </ul>
+                }
             </div>
         </div>
     </nav>
+
     <div class="container body-content">
         @RenderBody()
         <hr />

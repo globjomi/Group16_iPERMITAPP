@@ -64,12 +64,34 @@
             .welcome p {
                 color: #888;
             }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 12px 20px; /* more space inside cells */
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        thead th {
+            background-color: #2c7a4b;
+            color: white;
+            font-weight: bold;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1; /* optional: row highlight on hover */
+        }
     </style>
 </head>
 <body>
     <div class="navbar">
         <h1>🌿 iPERMIT - EO Dashboard</h1>
-        <a href="@Url.Action("Logout", "Account")">Logout</a>
     </div>
 
     <div class="container">
@@ -77,6 +99,44 @@
             <h2>Welcome, @Session["UserId"]!</h2>
             <p>You are logged in as an Environmental Officer.</p>
         </div>
+
+        <h3>Submitted Permit Requests</h3>
+        <table class="table-striped table-bordered">
+            <thead class="table-dark"> 
+                <tr>
+                    <th>Request No</th>
+                    <th>RE ID</th>
+                    <th>Permit ID</th>
+                    <th>Status</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var request in Model)
+                    {
+                        <tr>
+                            <td>@request.RequestNo</td>
+                            <td>@request.REId</td>
+                            <td>@request.PermitID</td>
+                            <td>@request.Status</td>
+                            <td>@request.ActivityDescription</td>
+                            <td>
+                                <a class="btn-view" href="@Url.Action("Details", "EODashboard", new { id = request.RequestNo })">View/Edit</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" style="text-align:center; color:#888;">No permit requests submitted yet.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
