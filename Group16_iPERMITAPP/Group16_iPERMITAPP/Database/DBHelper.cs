@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data.SQLite;
 
 namespace Group16_iPERMITAPP.Database
@@ -87,6 +87,63 @@ namespace Group16_iPERMITAPP.Database
                             FOREIGN KEY (REId) REFERENCES RE(REId)
                         );";
                     cmd.ExecuteNonQuery();
+
+                    // Payment table
+                    cmd.CommandText = @"
+                        CREATE TABLE IF NOT EXISTS Payment (
+                            paymentID TEXT PRIMARY KEY,
+                            requestNo TEXT NOT NULL,
+                            amountPaid REAL NOT NULL,
+                            paymentDate TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                            FOREIGN KEY (requestNo) REFERENCES PermitRequest(requestNo)
+                        );";
+                    cmd.ExecuteNonQuery();
+
+                    // Decision table
+                    cmd.CommandText = @"
+                        CREATE TABLE IF NOT EXISTS Decision (
+                            decisionID TEXT PRIMARY KEY,
+                            requestNo TEXT NOT NULL,
+                            decisionDate TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                            decisionStatus TEXT NOT NULL,
+                            decisionNotes TEXT,
+                            FOREIGN KEY (requestNo) REFERENCES PermitRequest(requestNo)
+                        );";
+                    cmd.ExecuteNonQuery();
+
+                    // Permit table
+                    cmd.CommandText = @"
+                        CREATE TABLE IF NOT EXISTS Permit (
+                            permitNo TEXT PRIMARY KEY,
+                            requestNo TEXT NOT NULL,
+                            issueDate TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                            expiryDate TEXT NOT NULL,
+                            FOREIGN KEY (requestNo) REFERENCES PermitRequest(requestNo)
+                        );";
+                    cmd.ExecuteNonQuery();
+
+                    // RequestStatus table
+                    cmd.CommandText = @"
+                        CREATE TABLE IF NOT EXISTS RequestStatus (
+                            statusID TEXT PRIMARY KEY,
+                            requestNo TEXT NOT NULL,
+                            statusDate TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                            status TEXT NOT NULL,
+                            FOREIGN KEY (requestNo) REFERENCES PermitRequest(requestNo)
+                        );";
+                    cmd.ExecuteNonQuery();
+
+                    // EmailArchive table
+                    cmd.CommandText = @"
+                        CREATE TABLE IF NOT EXISTS EmailArchive (
+                            emailID TEXT PRIMARY KEY,
+                            recipientEmail TEXT NOT NULL,
+                            emailDate TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                            subject TEXT NOT NULL,
+                            body TEXT NOT NULL
+                        );";
+                    cmd.ExecuteNonQuery();
+
                 }
             }
         }
