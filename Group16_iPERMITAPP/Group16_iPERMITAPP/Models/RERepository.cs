@@ -35,5 +35,34 @@ namespace Group16_iPERMITAPP.Models
             }
             return null;
         }
+
+        public bool Register(RE re)
+        {
+            using (var conn = DbHelper.GetConnection())
+            {
+                conn.Open();
+                string query = @"INSERT INTO RE (REId, REPassword, contactPersonName, REEmail, organizationName, organizationAddress) 
+                                VALUES (@id, @password, @contactPerson, @email, @orgName, @orgAddress);";
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", re.REId);
+                    cmd.Parameters.AddWithValue("@password", re.REPassword);
+                    cmd.Parameters.AddWithValue("@contactPerson", re.ContactPersonName);
+                    cmd.Parameters.AddWithValue("@email", re.REEmail);
+                    cmd.Parameters.AddWithValue("@orgName", re.OrganizationName);
+                    cmd.Parameters.AddWithValue("@orgAddress", re.OrganizationAddress);
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
     }
 }

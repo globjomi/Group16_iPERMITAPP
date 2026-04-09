@@ -1,11 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Login";
+    Layout = null;
+    ViewBag.Title = "Register";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>iPERMIT Login</title>
+    <title>iPERMIT - Create Account</title>
     <style>
         * {
             margin: 0;
@@ -19,26 +20,27 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            padding: 40px 0;
         }
 
-        .login-container {
+        .register-container {
             background-color: white;
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 400px;
+            max-width: 450px;
         }
 
-            .login-container h1 {
+            .register-container h1 {
                 text-align: center;
                 color: #2c7a4b;
                 margin-bottom: 10px;
                 font-size: 28px;
             }
 
-            .login-container p.subtitle {
+            .register-container p.subtitle {
                 text-align: center;
                 color: #888;
                 margin-bottom: 30px;
@@ -71,7 +73,7 @@
                     border-color: #2c7a4b;
                 }
 
-        .btn-login {
+        .btn-register {
             width: 100%;
             padding: 12px;
             background-color: #2c7a4b;
@@ -83,7 +85,7 @@
             transition: background-color 0.3s;
         }
 
-            .btn-login:hover {
+            .btn-register:hover {
                 background-color: #245f3c;
             }
 
@@ -96,33 +98,66 @@
             font-size: 14px;
             text-align: center;
         }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+
+            .login-link a {
+                color: #2c7a4b;
+                text-decoration: none;
+                font-weight: 600;
+            }
+
+                .login-link a:hover {
+                    text-decoration: underline;
+                }
     </style>
 </head>
 <body>
-    <div class="login-container">
+    <div class="register-container">
         <h1>🌿 iPERMIT</h1>
-        <p class="subtitle">Environmental Permit Management System</p>
+        <p class="subtitle">Create a new RE Account</p>
 
         @if (ViewBag.Error != null)
         {
             <div class="error-message">@ViewBag.Error</div>
         }
 
-        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post))
         {
             <div class="form-group">
-                <label>ID</label>
-                <input type="text" name="id" placeholder="Enter your ID" />
+                <label>RE ID</label>
+                <input type="text" name="REId" placeholder="Enter your RE ID" />
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="password" placeholder="Enter your password" />
+                <input type="password" name="REPassword" placeholder="Enter your password" />
             </div>
-            <input type="submit" class="btn-login" value="Login" />
+            <div class="form-group">
+                <label>Contact Person Name</label>
+                <input type="text" name="ContactPersonName" placeholder="Enter contact person name" />
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="REEmail" placeholder="Enter your email" />
+            </div>
+            <div class="form-group">
+                <label>Organization Name</label>
+                <input type="text" name="OrganizationName" placeholder="Enter organization name" />
+            </div>
+            <div class="form-group">
+                <label>Organization Address</label>
+                <input type="text" name="OrganizationAddress" placeholder="Enter organization address" />
+            </div>
+            <input type="submit" class="btn-register" value="Create Account" />
         }
 
-        <div class="login-link" style="text-align:center; margin-top:20px; font-size:14px; color:#888;">
-            Don't have an account? <a href="@Url.Action("Register", "Account")" style="color:#2c7a4b; text-decoration:none; font-weight:600;">Create one here</a>
+        <div class="login-link">
+            Already have an account? <a href="@Url.Action("Login", "Account")">Login here</a>
         </div>
     </div>
 </body>

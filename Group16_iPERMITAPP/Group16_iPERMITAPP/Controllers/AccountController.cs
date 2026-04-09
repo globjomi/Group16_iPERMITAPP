@@ -34,8 +34,26 @@ namespace Group16_iPERMITAPP.Controllers
                 return RedirectToAction("Index", "REDashboard");
             }
 
-            // Invalid credentials
             ViewBag.Error = "Invalid ID or Password!";
+            return View();
+        }
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(RE re)
+        {
+            bool success = _reRepo.Register(re);
+            if (success)
+            {
+                ViewBag.Success = "Account created successfully! Please login.";
+                return RedirectToAction("Login");
+            }
+
+            ViewBag.Error = "Registration failed. ID may already exist!";
             return View();
         }
 
