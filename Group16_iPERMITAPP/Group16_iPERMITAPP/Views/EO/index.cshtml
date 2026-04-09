@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Group16_iPERMITAPP.Models.EO>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EO Test Page</title>
+</head>
+<body>
+    <h1>Environmental Officers</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Password</th>
+        </tr>
+        @foreach (var eo in Model)
+        {
+            <tr>
+                <td>@eo.EOId</td>
+                <td>@eo.EOName</td>
+                <td>@eo.EOPassword</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

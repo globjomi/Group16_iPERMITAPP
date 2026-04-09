@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "EO Dashboard";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EO Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f4f8;
+        }
+
+        .navbar {
+            background-color: #2c7a4b;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .navbar h1 {
+                color: white;
+                font-size: 22px;
+            }
+
+            .navbar a {
+                color: white;
+                text-decoration: none;
+                font-size: 14px;
+                background-color: #245f3c;
+                padding: 8px 16px;
+                border-radius: 6px;
+            }
+
+                .navbar a:hover {
+                    background-color: #1a4a2e;
+                }
+
+        .container {
+            padding: 40px;
+        }
+
+        .welcome {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+            .welcome h2 {
+                color: #2c7a4b;
+                margin-bottom: 10px;
+            }
+
+            .welcome p {
+                color: #888;
+            }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>🌿 iPERMIT - EO Dashboard</h1>
+        <a href="@Url.Action("Logout", "Account")">Logout</a>
+    </div>
+
+    <div class="container">
+        <div class="welcome">
+            <h2>Welcome, @Session["UserId"]!</h2>
+            <p>You are logged in as an Environmental Officer.</p>
+        </div>
+    </div>
+</body>
+</html>

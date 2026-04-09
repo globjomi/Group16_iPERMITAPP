@@ -137,11 +137,19 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\REDashboardController.cs" />
+    <Compile Include="Controllers\EODashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Database\DBHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\RERepository.cs" />
+    <Compile Include="Models\RE.cs" />
+    <Compile Include="Models\EOController.cs" />
+    <Compile Include="Models\EORepository.cs" />
+    <Compile Include="Models\EO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -195,10 +203,13 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\EO\index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\EODashboard\Index.cshtml" />
+    <Content Include="Views\REDashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
