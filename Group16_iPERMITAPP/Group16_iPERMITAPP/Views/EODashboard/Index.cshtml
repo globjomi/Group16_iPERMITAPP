@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Group16_iPERMITAPP.Models.PermitRequestViewModel>
+@{
     ViewBag.Title = "EO Dashboard";
 }
 
@@ -88,7 +89,10 @@
             background-color: #f1f1f1; /* optional: row highlight on hover */
         }
     </style>
+
+
 </head>
+
 <body>
     <div class="navbar">
         <h1>🌿 iPERMIT - EO Dashboard</h1>
@@ -100,26 +104,41 @@
             <p>You are logged in as an Environmental Officer.</p>
         </div>
 
-        <h3>Submitted Permit Requests</h3>
-        <table class="table-striped table-bordered">
-            <thead class="table-dark"> 
-                <tr>
-                    <th>Request No</th>
-                    <th>RE ID</th>
-                    <th>Permit ID</th>
-                    <th>Status</th>
-                    <th>Description</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model != null && Model.Count > 0)
-                {
-                    foreach (var request in Model)
+        <h3 class="section-title">Submitted Permit Requests</h3>
+
+        @if (Model != null && Model.Count > 0)
+        {
+            <table>
+                <thead>
+                    <tr>
+                        <th>Request No</th>
+                        <th>RE ID</th>
+                        <th>Permit ID</th>
+                        <th>Status</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var request in Model)
                     {
                         <tr>
                             <td>@request.RequestNo</td>
-                            <td>@request.REId</td>
+                            <td>
+                                @request.REId
+                                @if (!string.IsNullOrEmpty(request.OrganizationName) || !string.IsNullOrEmpty(request.ContactPersonName) || !string.IsNullOrEmpty(request.REEmail))
+                                {
+                                    <div class="re-details">
+                                        @(!string.IsNullOrEmpty(request.OrganizationName) ? request.OrganizationName + (string.IsNullOrEmpty(request.ContactPersonName) ? "" : " - ") : "")
+                                        @(!string.IsNullOrEmpty(request.ContactPersonName) ? request.ContactPersonName : "")
+                                        <br />
+                                        @if (!string.IsNullOrEmpty(request.REEmail))
+                                        {
+                                            <a href="mailto:@request.REEmail">@request.REEmail</a>
+                                        }
+                                    </div>
+                                }
+                            </td>
                             <td>@request.PermitID</td>
                             <td>@request.Status</td>
                             <td>@request.ActivityDescription</td>
@@ -128,15 +147,57 @@
                             </td>
                         </tr>
                     }
-                }
-                else
-                {
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="muted">No permit requests submitted yet.</div>
+        }
+
+        <h3 class="section-title">Registered Entities (RE)</h3>
+
+        @{
+            var reList = ViewBag.REs as List<Group16_iPERMITAPP.Models.RE>;
+        }
+
+        @if (reList != null && reList.Count > 0)
+        {
+            <table>
+                <thead>
                     <tr>
-                        <td colspan="6" style="text-align:center; color:#888;">No permit requests submitted yet.</td>
+                        <th>RE ID</th>
+                        <th>Contact Person</th>
+                        <th>Email</th>
+                        <th>Organization</th>
+                        <th>Address</th>
+                        <th>Created</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var re in reList)
+                    {
+                        <tr>
+                            <td>@re.REId</td>
+                            <td>@re.ContactPersonName</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(re.REEmail))
+                                {
+                                    <a href="mailto:@re.REEmail">@re.REEmail</a>
+                                }
+                            </td>
+                            <td>@re.OrganizationName</td>
+                            <td>@re.OrganizationAddress</td>
+                            <td>@re.CreatedDate</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="muted">No registered entities found.</div>
+        }
     </div>
 </body>
 </html>

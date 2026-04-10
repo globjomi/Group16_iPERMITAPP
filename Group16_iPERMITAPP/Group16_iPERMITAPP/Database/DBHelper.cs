@@ -143,7 +143,7 @@ namespace Group16_iPERMITAPP.Database
                             body TEXT NOT NULL
                         );";
                     cmd.ExecuteNonQuery();
-
+                                                   
                 }
             }
         }
