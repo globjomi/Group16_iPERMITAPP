@@ -5,13 +5,13 @@ Project Name: Group16_iPERMITAPP Database Name: Group16_iPERMITDB (SQLite via DB
 Project Overview: The iPERMIT Web Application is a full-stack MVC system designed to manage environmental permit applications. It supports two user roles:
 
 RE (Registered Environmental users):
+- Can register, log in, submit permit applications, and track status
 
-Can register, log in, submit permit applications, and track status. EO (Environmental Officer):
-Can review applications, process payments, issue permits, update statuses, and view reports.
+EO (Environmental Officer):
+- Can review applications, process payments, issue permits, update statuses, and view reports.
 The system follows an MVC architecture using ASP.NET MVC and uses SQLite as the database, accessed through a built-in DB Helper class.
 
 Technologies Used:
-
 - ASP .NET MVC (VS)
 - C#
 - SQLite DB
