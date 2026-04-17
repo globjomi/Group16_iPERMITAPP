@@ -23,6 +23,6 @@ Setup Instructions:
 2. Locate the executable file : /bin/Release/Group16_iPERMITAPP.exe
 3. Double click the executable to run the application
 4. The application will automatically:
-  - Initalize SQLite database if not created
-  - Load required tables using DB Helper
-  - Launch the web application in your default brower
+    - Initalize SQLite database if not created
+    - Load required tables using DB Helper
+    - Launch the web application in your default brower
