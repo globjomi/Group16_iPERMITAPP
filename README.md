@@ -20,7 +20,7 @@ Technologies Used:
 
 Setup Instructions:
 1. Download and unzip the provided project folder
-2. Locate the executable file : /bin/app.publish
+2. Locate the publish file : /bin/app.publish
 3. Double click to run the application
 4. The application will automatically:
     - Initalize SQLite database if not created
