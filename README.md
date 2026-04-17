@@ -20,9 +20,11 @@ Technologies Used:
 
 Setup Instructions:
 1. Download and unzip the provided project folder
-2. Locate the executable file : /bin/Release/Group16_iPERMITAPP.exe
-3. Double click the executable to run the application
+2. Locate the executable file : /bin/app.publish
+3. Double click to run the application
 4. The application will automatically:
     - Initalize SQLite database if not created
     - Load required tables using DB Helper
     - Launch the web application in your default brower
+
+If this does not work, please attempt to load the .sln (solution) file, build, and run that!
