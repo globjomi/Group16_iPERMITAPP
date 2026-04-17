@@ -12,13 +12,13 @@ The system follows an MVC architecture using ASP.NET MVC and uses SQLite as the 
 
 Technologies Used:
 
-ASP .NET MVC (VS)
-C#
-SQLite DB
-HTML / CSS / JavaScript
-DB helper class for DB access
-Setup Instructions:
+- ASP .NET MVC (VS)
+- C#
+- SQLite DB
+- HTML / CSS / JavaScript
+- DB helper class for DB access
 
+Setup Instructions:
 Download and unzip the provided project folder
 Locate the executable file : /bin/Release/Group16_iPERMITAPP.exe
 Double click the executable to run the application
