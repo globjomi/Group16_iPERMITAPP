@@ -19,10 +19,10 @@ Technologies Used:
 - DB helper class for DB access
 
 Setup Instructions:
-Download and unzip the provided project folder
-Locate the executable file : /bin/Release/Group16_iPERMITAPP.exe
-Double click the executable to run the application
-The application will automatically:
-Initalize SQLite database if not created
-Load required tables using DB Helper
-Launch the web application in your default brower
+1. Download and unzip the provided project folder
+2. Locate the executable file : /bin/Release/Group16_iPERMITAPP.exe
+3. Double click the executable to run the application
+4. The application will automatically:
+  - Initalize SQLite database if not created
+  - Load required tables using DB Helper
+  - Launch the web application in your default brower
